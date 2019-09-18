@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="assets/js/lib/howler.js"></script>
+    <script src="assets/js/lib/paper-full.js"></script>    
+    <script type="text/paperscript" canvas="myCanvas">
+        var keyData = {
+            q: {
+                color: "red",
+                sound: new Howl({
+                    src: ['assets/sounds/bubbles.mp3']
+                })
+            },
+            w: {
+                color: "firebrick",
+                sound: new Howl({
+                    src: ['assets/sounds/clay.mp3']
+                })
+            },
+            e: {
+                color: "coral",
+                sound: new Howl({
+                    src: ['assets/sounds/confetti.mp3']
+                })
+            },
+            r: {
+                color: "darkorange",
+                sound: new Howl({
+                    src: ['assets/sounds/corona.mp3']
+                })
+            },
+            t: {
+                color: "lightyellow",
+                sound: new Howl({
+                    src: ['assets/sounds/dotted-spiral.mp3']
+                })
+            },
+            y: {
+                color: "khaki",
+                sound: new Howl({
+                    src: ['assets/sounds/flash-1.mp3']
+                })
+            },
+            u: {
+                color: "chartreuse",
+                sound: new Howl({
+                    src: ['assets/sounds/flash-2.mp3']
+                })
+            },
+            i: {
+                color: "springgreen",
+                sound: new Howl({
+                    src: ['assets/sounds/flash-3.mp3']
+                })
+            },
+            o: {
+                color: "olive",
+                sound: new Howl({
+                    src: ['assets/sounds/glimmer.mp3']
+                })
+            },
+            p: {
+                color: "aqua",
+                sound: new Howl({
+                    src: ['assets/sounds/moon.mp3']
+                })
+            },
+            a: {
+                color: "paleturquoise",
+                sound: new Howl({
+                    src: ['assets/sounds/pinwheel.mp3']
+                })
+            },
+            s: {
+                color: "cadetblue",
+                sound: new Howl({
+                    src: ['assets/sounds/piston-1.mp3']
+                })
+            },
+            d: {
+                color: "deepskyblue",
+                sound: new Howl({
+                    src: ['assets/sounds/piston-2.mp3']
+                })
+            },
+            f: {
+                color: "cornflowerblue",
+                sound: new Howl({
+                    src: ['assets/sounds/piston-3.mp3']
+                })
+            },
+            g: {
+                color: "mediumblue",
+                sound: new Howl({
+                    src: ['assets/sounds/prism-1.mp3']
+                })
+            },
+            h: {
+                color: "navy",
+                sound: new Howl({
+                    src: ['assets/sounds/prism-2.mp3']
+                })
+            },
+            j: {
+                color: "thistle",
+                sound: new Howl({
+                    src: ['assets/sounds/prism-3.mp3']
+                })
+            },
+            k: {
+                color: "darkmagenta",
+                sound: new Howl({
+                    src: ['assets/sounds/splits.mp3']
+                })
+            },
+            l: {
+                color: "hotpink",
+                sound: new Howl({
+                    src: ['assets/sounds/squiggle.mp3']
+                })
+            },
+            z: {
+                color: "mediumvioletred",
+                sound: new Howl({
+                    src: ['assets/sounds/strike.mp3']
+                })
+            },
+            x: {
+                color: "honeydew",
+                sound: new Howl({
+                    src: ['assets/sounds/suspension.mp3']
+                })
+            },
+            c: {
+                color: "azure",
+                sound: new Howl({
+                    src: ['assets/sounds/timer.mp3']
+                })
+            },
+            v: {
+                color: "seashell",
+                sound: new Howl({
+                    src: ['assets/sounds/ufo.mp3']
+                })
+            },
+            b: {
+                color: "darkslategray",
+                sound: new Howl({
+                    src: ['assets/sounds/veil.mp3']
+                })
+            },
+            n: {
+                color: "wheat",
+                sound: new Howl({
+                    src: ['assets/sounds/wipe.mp3']
+                })
+            },
+            m: {
+                color: "sienna",
+                sound: new Howl({
+                    src: ['assets/sounds/zig-zag.mp3']
+                })
+            }
+        }
+
+        var circles = [];
+
+        function onKeyDown(event) {   
+            if(keyData[event.key]){
+                var maxPoint = new Point(view.size.width, view.size.height);
+                var randomPoint = Point.random();
+                var point = maxPoint * randomPoint;
+
+                var circle = new Path.Circle({
+                    center: point,
+                    radius: 500,
+                    fillColor: keyData[event.key].color         
+                }); 
+                keyData[event.key].sound.play();  
+                circles.push(circle); 
+            }
+        }
+
+        function onFrame(event){
+            for(var i = 0; i < circles.length; i++) {
+                circles[i].scale(.9);
+            }            
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Patatap Clone</title>
+</head>
+
+<body>    
+    <canvas id="myCanvas" resize></canvas>
+    <div>
+        <h1>MUSIC<br>& COLOR<br><span>DEMO</span></h1>
+    </div>
+    
+</body>
+
+</html>
